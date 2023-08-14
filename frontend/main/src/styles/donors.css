@@ -1,0 +1,51 @@
+/* CSS for Donors.tsx file */
+
+.donors {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .card {
+    width: 394.66px;
+    height: 472.42px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .text-head {
+    font-size: 35px;
+    line-height: 44px;
+    color: #000000;
+  }
+  
+  .text {
+    font-size: 24px;
+    line-height: 30px;
+    color: #000000;
+  }
+  
+  .donor-img {
+    width: 90%;
+    height: 300px;
+    border-radius: 20px;
+  }
+  
+  .donor-heart {
+    width: 116px;
+    height: 116px;
+    border-radius: 4px;
+  }
+  
+  .row {
+    margin: 0;
+  }
+  
+  .card-text {
+    padding-right: 0;
+    text-align: left;
+  }
