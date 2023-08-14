@@ -1,4 +1,5 @@
 // pages/mint.js
+import { ConnectButton } from "@suiet/wallet-kit";
 
 function MintPage() {
     // Styles for the main container
@@ -53,6 +54,7 @@ function MintPage() {
     return (
         <div style={containerStyle}>
             <h1 style={titleStyle}>Mint Your NFT</h1>
+            <ConnectButton>Connect!</ConnectButton>
             <div style={formStyle}>
                 <input type="file" accept="image/*" style={inputStyle} />
                 <input type="text" placeholder="Title" style={inputStyle} />

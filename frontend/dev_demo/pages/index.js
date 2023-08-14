@@ -2,6 +2,8 @@
 
 // Import the useRouter hook from next/router to programmatically navigate between pages
 import { useRouter } from 'next/router';
+import { ConnectButton } from "@suiet/wallet-kit";
+
 function App() {
     // Initialize the router object using the useRouter hook
     const router = useRouter();
