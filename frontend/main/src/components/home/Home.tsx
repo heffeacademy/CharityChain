@@ -102,7 +102,7 @@ function Home() {
             <br />
             <br />
             <div>
-              <Link to="/contact" className="info-button red-button">
+              <Link to="/company" className="info-button red-button">
                 Get Involved Now
               </Link>
             </div>
@@ -199,7 +199,7 @@ function Home() {
 
               </Col>
               <Col xs md="6" className='faq-text'>
-                <div className='donor-head'>
+                <div className='donor-head p-0'>
                   Frequently Asked Questions
                 </div>
                 <div className=''>

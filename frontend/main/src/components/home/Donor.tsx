@@ -63,7 +63,6 @@ function Carousel() {
                                     </Col>
                                     <Col xs lg="4">
                                         <img src={HeartChain} alt="logo" className="donor-heart" />
-
                                     </Col>
                                 </Row>
                             </Container>

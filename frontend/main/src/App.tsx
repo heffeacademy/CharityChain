@@ -8,6 +8,7 @@ import Partnership from "./components/Partnership";
 import Whitepaper from "./components/Whitepaper";
 import Vote from "./components/Vote";
 import Contact from "./components/Contact";
+import Company from "./components/Company";
 import Collection from "./components/Collection";
 import { EthosConnectProvider } from 'ethos-connect';
 
@@ -30,6 +31,7 @@ function App() {
                 <Route path='/vote' element={<Vote />} />
                 <Route path='/contact' element={<Contact />} />
                 <Route path='/collection' element={<Collection />} />
+                <Route path='/company' element={<Company />} />
               </Routes>
             </div>
             <Footer />

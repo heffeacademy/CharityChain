@@ -220,16 +220,18 @@
     padding: 0 50px;
 }
 
-.faq-heart{
+.faq-heart {
     width: 100%;
 }
-.faq-text{
+
+.faq-text {
     text-align: left;
     padding: 0 15px;
 }
-.faq-info{
+
+.faq-info {
     margin: 15px 0;
     display: flex;
     justify-content: space-between;
-    align-items: center; 
+    align-items: center;
 }

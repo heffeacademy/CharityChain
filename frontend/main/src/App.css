@@ -12,8 +12,29 @@ body {
   margin-right: 60px;
 }
 
+.m-r-20 {
+  margin-right: 20px;
+}
+
 .d-flex {
   display: flex;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-right {
+  text-align: right;
+}
+
+
+.color-red {
+  color: #960620;
+}
+
+.bg-red {
+  background-color: #960620;
 }
 
 /* Header CSS */
