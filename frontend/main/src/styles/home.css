@@ -45,6 +45,7 @@
     align-items: center;
     padding: 10px 35px;
     display: inline-flex;
+    text-decoration: none;
 }
 
 .white-button {
@@ -59,8 +60,7 @@
 
 .collab {
     text-align: left;
-    padding-left: 50px;
-    padding-right: 50px;
+    padding: 0 50px;
     height: 256px;
     margin-top: 160px;
     margin-bottom: 60px;
@@ -71,6 +71,7 @@
     line-height: 50px;
     font-weight: 600;
     margin: 0;
+    text-align: left;
     line-height: 50px;
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -216,8 +217,19 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     text-align: left;
     margin-bottom: 30px;
+    padding: 0 50px;
 }
 
 .faq-heart{
     width: 100%;
+}
+.faq-text{
+    text-align: left;
+    padding: 0 15px;
+}
+.faq-info{
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
 }

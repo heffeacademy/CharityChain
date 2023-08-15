@@ -1,4 +1,4 @@
-function About() {
+function Whitepaper() {
 
   return (
     <>
@@ -12,4 +12,4 @@ function About() {
   )
 }
 
-export default About
+export default Whitepaper

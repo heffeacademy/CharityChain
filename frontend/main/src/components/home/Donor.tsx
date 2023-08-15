@@ -1,8 +1,8 @@
-import "../styles/donors.css";
-import img1 from '../assets/donor-img1.png';
-import img2 from '../assets/donor-img2.png';
-import img3 from '../assets/donor-img3.png';
-import HeartChain from "../assets/heart_chain.png";
+import "../../styles/donors.css";
+import img1 from '../../assets/donor-img1.png';
+import img2 from '../../assets/donor-img2.png';
+import img3 from '../../assets/donor-img3.png';
+import HeartChain from "../../assets/heart_chain.png";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

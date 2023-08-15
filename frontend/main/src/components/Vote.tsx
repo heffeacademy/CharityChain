@@ -1,4 +1,4 @@
-function About() {
+function Vote() {
 
   return (
     <>
@@ -12,4 +12,4 @@ function About() {
   )
 }
 
-export default About
+export default Vote

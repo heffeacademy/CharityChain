@@ -1,24 +1,57 @@
-import '../styles/home.css';
-import HeartChain from "../assets/heart_chain.png";
-import Collab1 from "../assets/collab1.png";
-import Collab2 from "../assets/collab2.png";
-import Collab3 from "../assets/collab3.png";
-import offset from "../assets/offset.svg";
-import recieve from "../assets/recieve.svg";
-import search from "../assets/search.svg";
-import user from "../assets/user.svg";
-import FAQ from "../assets/faq-heart.png";
+import '../../styles/home.css';
+import HeartChain from "../../assets/heart_chain.png";
+import Collab1 from "../../assets/collab1.png";
+import Collab2 from "../../assets/collab2.png";
+import Collab3 from "../../assets/collab3.png";
+import offset from "../../assets/offset.svg";
+import recieve from "../../assets/recieve.svg";
+import search from "../../assets/search.svg";
+import user from "../../assets/user.svg";
+import FAQ from "../../assets/faq-heart.png";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Carousel from "../components/Carousel";
-import Donor from "../components/Donor";
+import Carousel from "./Carousel";
+import Donor from "./Donor";
+import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 function Home() {
+  const faqData = [
+    {
+      title: "Can it be refund?",
+      text: "Content...",
+    },
+    {
+      title: "Can it be monetized to dollars?",
+      text: "Content ...",
+    },
+    {
+      title: "Does it need credit cards?",
+      text: "Content ...",
+    },
+    {
+      title: "Can I get dividend?",
+      text: "Content ...",
+    },
+    {
+      title: "Is it tax free?",
+      text: "Content ...",
+    }
+  ]
+  const [openSection, setOpenSection] = useState<number | null>(null);
+
+  const toggleSection = (sectionNumber: number) => {
+    if (openSection === sectionNumber) {
+      setOpenSection(null); // Close the currently open section
+    } else {
+      setOpenSection(sectionNumber); // Open the clicked section
+    }
+  };
 
   return (
     <>
-      <div className="container">
+      <div className="">
         <div className="view-1">
           <div className="info">
             <div className="left-info">
@@ -32,12 +65,12 @@ function Home() {
               <br />
               <br />
               <div className=''>
-                <span className='info-button white-button m-r-60'>
-                  Our Collections
-                </span>
-                <span className='info-button red-button'>
-                  Become Our Partner
-                </span>
+                <Link to="/collection">
+                  <div className="info-button white-button m-r-60">Our Collections</div>
+                </Link>
+                <Link to="/partnership">
+                  <div className="info-button red-button">Become Our Partner</div>
+                </Link>
               </div>
             </div>
             <div className="right-info">
@@ -69,9 +102,9 @@ function Home() {
             <br />
             <br />
             <div>
-              <span className='info-button red-button'>
+              <Link to="/contact" className="info-button red-button">
                 Get Involved Now
-              </span>
+              </Link>
             </div>
           </div>
           <div className="right-view2">
@@ -79,9 +112,6 @@ function Home() {
           </div>
         </div>
         <div className="view-3-support">
-          <div className='page-head'>
-            Support Our Current Fundraisers
-          </div>
           <div>
             <Carousel />
           </div>
@@ -138,9 +168,11 @@ function Home() {
               </Row>
               <Row className="justify-content-md-center">
                 <Col md="auto"> </Col>
-                <Col md="4"> <span className='info-button red-button'>
-                  Set up a Consultation Call
-                </span> </Col>
+                <Col md="4">
+                  <Link to="/contact">
+                    <span className='info-button red-button'>Set up a Consultation Call</span>
+                  </Link>
+                </Col>
                 <Col md="auto"> </Col>
 
 
@@ -166,9 +198,21 @@ function Home() {
                 <img src={FAQ} alt="FAQ" className="faq-heart" />
 
               </Col>
-              <Col xs md="6">
+              <Col xs md="6" className='faq-text'>
                 <div className='donor-head'>
                   Frequently Asked Questions
+                </div>
+                <div className=''>
+                  {faqData.map((item, index) => (
+                    <div>
+                      <div key={index} className='faq-info'>
+                        <h2 onClick={() => toggleSection(index)}>{item.title}</h2> <span style={{ cursor: "pointer" }} onClick={() => toggleSection(index)}>+</span>
+                      </div>
+                      <div>
+                        {openSection === index && <div>{item.text}</div>}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </Col>
             </Row>

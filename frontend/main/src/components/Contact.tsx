@@ -1,4 +1,4 @@
-function About() {
+function Contact() {
 
   return (
     <>
@@ -12,4 +12,4 @@ function About() {
   )
 }
 
-export default About
+export default Contact
