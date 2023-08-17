@@ -1,0 +1,106 @@
+.company_head {
+    margin-top: 60px;
+}
+
+.companyLogo {
+    height: 200px;
+    width: 200px;
+    padding: 20px;
+}
+
+.companyDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 382px;
+    background: #F5F5F5;
+    border-radius: 20px;
+}
+
+.subhead {
+    font-size: 34px;
+    line-height: 42px;
+}
+
+.normaText {
+    font-size: 26px;
+    line-height: 32px;
+}
+
+.headText {
+    font-size: 40px;
+    line-height: 67px;
+    margin-bottom: 20px;
+}
+
+.seperate {
+    border-right: 2px solid black;
+    margin: 0 10px;
+}
+
+.suiLogo {
+    height: 64px;
+    width: 64px;
+}
+
+.social-icons2 {
+    height: 64px;
+    width: 64px;
+    margin-right: 10px;
+    color: #48A2F5;
+}
+
+.c_info {
+    margin-top: 140px;
+}
+
+.proposalDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    height: 400px;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.small-heart {
+    width: 116px;
+    height: 116px;
+    width: 30%;
+}
+
+.btn-box {
+    margin: 0 11%;
+}
+
+.activity {
+    margin-top: 100px;
+    padding: 40px;
+}
+
+.activities {
+    border-bottom: 1px solid black;
+}
+
+.activityCol {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    height: 150px;
+    background: #FFFFFF;
+    margin-top: 20px;
+}
+
+.logo_src {
+    height: 100px;
+    width: 100px;
+    margin: 0 21px;
+}
+
+.load {
+    margin-top: 30px;
+    justify-content: center;
+}

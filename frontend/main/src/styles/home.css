@@ -1,0 +1,237 @@
+.view-1,
+.view-2 {
+    min-height: calc(100vh-123px);
+}
+
+.info {
+    display: flex;
+    padding-left: 10%;
+    padding-right: 50px;
+    height: 440px;
+}
+
+.left-info {
+    width: 50%;
+    margin-top: 8%;
+    text-align: left;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.right-info {
+    width: 40%;
+}
+
+.heading {
+    font-size: 55px;
+    line-height: 69px;
+    margin: 0;
+}
+
+.sub-heading {
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 400;
+}
+
+.info-button {
+    height: 64px;
+    font-size: 20px;
+    line-height: 25px;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 35px;
+    display: inline-flex;
+    text-decoration: none;
+}
+
+.white-button {
+    background: #FFFFFF;
+    color: #960620;
+}
+
+.red-button {
+    color: black;
+    background-color: #960620;
+}
+
+.collab {
+    text-align: left;
+    padding: 0 50px;
+    height: 256px;
+    margin-top: 160px;
+    margin-bottom: 60px;
+}
+
+.page-head {
+    font-size: 40px;
+    line-height: 50px;
+    font-weight: 600;
+    margin: 0;
+    text-align: left;
+    line-height: 50px;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.collab-info {
+    display: flex;
+    height: 177px;
+    background: rgba(150, 6, 32, 0.4);
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 18px;
+}
+
+.collab-img {
+    height: 140px;
+    padding: 0 2%;
+}
+
+.view-3-support {
+    margin-top: 200px;
+}
+
+.view-4-how,
+.view-5-donors,
+.view-6-FAQ {
+    margin-top: 100px;
+}
+
+.view2-text {
+    height: 252px;
+    left: calc(50% - 1142px/2);
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 62px;
+    text-align: center;
+    color: #000000;
+}
+
+.donation-amt {
+    font-weight: 400;
+    font-size: 120px;
+    line-height: 150px;
+    text-align: center;
+    color: #000000;
+}
+
+.left-view2 {
+    margin-top: 8%;
+    text-align: center;
+    color: #000000;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.right-view2 {
+    overflow-x: hidden;
+    margin-top: -250px;
+    float: right;
+}
+
+.heart-90-img {
+    transform: rotate(90deg);
+    height: 407px;
+}
+
+.view2-subtext {
+    font-size: 30px;
+    line-height: 38px;
+}
+
+.how-text {
+    font-size: 60px;
+    line-height: 75px;
+    text-align: center;
+    color: #000000;
+}
+
+.how-t {
+    font-size: 30px;
+    line-height: 38px;
+    text-align: center;
+    color: #000000;
+}
+
+.HeartBg {
+    margin-top: 20px;
+    padding-top: 10%;
+    height: 890px;
+    background: url(../assets/work_heart_bg.png);
+    border-radius: 20px;
+    background-position: center;
+    background-size: 86%;
+    background-repeat: no-repeat;
+}
+
+.tile {
+    min-width: 35%;
+    height: 209px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 40px;
+}
+
+.tile-icon {
+    flex: 0 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.tile-head {
+    left: calc(50% - 205px/2 - 295px);
+    font-size: 30px;
+    line-height: 38px;
+    text-align: left;
+    color: #000000;
+    margin: 0;
+}
+
+.tile-text {
+    width: 317px;
+    height: 50px;
+    font-size: 20px;
+    line-height: 25px;
+    color: #000000;
+    text-align: left;
+}
+
+.row {
+    margin: 50px
+}
+
+.donor-head {
+    font-size: 50px;
+    line-height: 62px;
+    color: #960620;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    text-align: left;
+    margin-bottom: 30px;
+    padding: 0 50px;
+}
+
+.faq-heart {
+    width: 100%;
+}
+
+.faq-text {
+    text-align: left;
+    padding: 0 15px;
+}
+
+.faq-info {
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

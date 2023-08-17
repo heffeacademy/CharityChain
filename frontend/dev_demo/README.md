@@ -1,1 +1,1 @@
-This is a starter template for [Learn Next.js](https://nextjs.org/learn).
+This is the code for development testing of the backend. Basic UI implementation for internal testing of smart contrac features 

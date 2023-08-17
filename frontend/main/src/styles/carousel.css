@@ -1,0 +1,92 @@
+/* CSS for Carousel.tsx file */
+.page {
+  padding: 0 50px;
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 720px;
+}
+
+.work-img {
+  border-radius: 0.5rem;
+  /* box-shadow: 0px 0px 7px #666; */
+  width: 350px;
+  height: 393px;
+  padding: 20px;
+}
+
+.slide-hidden {
+  display: none;
+}
+
+.arrow {
+  filter: drop-shadow(0px 0px 5px #555);
+  color: white;
+  width: 60px;
+  height: 93px;
+  margin: 15px;
+}
+
+.line-break {
+  border: 1px solid black;
+}
+
+.page-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+.arrow-left {}
+
+.arrow-right {}
+
+.indicators {
+  display: flex;
+  position: absolute;
+  bottom: 1rem;
+}
+
+.indicator {
+  background-color: white;
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 0 0.2rem;
+  cursor: pointer;
+}
+
+.indicator-inactive {
+  background-color: grey;
+}
+
+
+.card-box {
+  box-sizing: border-box;
+  width: 430px;
+  height: 700px;
+  background: #FFFFFF;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  margin-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.adj {
+  position: absolute;
+  bottom: 30px;
+}
