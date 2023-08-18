@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ChangeEvent } from "react";
 import '../styles/collection.css';
 
 import NFT1 from '../assets/collection1.png';
@@ -13,6 +13,8 @@ function Collection() {
   const [description, setDescription] = useState('');
   const [name, setName] = useState('');
   const [number, setNumber] = useState(0);
+  const [activeVal, setActiveVal] = useState('val1');
+
   const slidesData = [
     {
       src: NFT1,
@@ -40,6 +42,14 @@ function Collection() {
     }
   ]
 
+  function createCollection(): void {
+    setActiveVal('val2')
+  }
+
+  function submitChanges(): void {
+    setActiveVal('val3')
+  }
+
   return (
     <>
       <div>
@@ -48,12 +58,10 @@ function Collection() {
             <h1 className='headTitle'> Turn Your Artworks into NFTs</h1>
             <p className='subText'> We are offering to turn your artworks into NFTs even without setting up a crypto<br /> wallet! A seem-less transition to finally have your artwork digitized and <br /> immutability-verifiable.  Its as simple as this!</p>
           </Row>
-          <Row>
+          {activeVal === 'val1' && <Row>
             <Col xs md="5" className="flex-aligned-even">
               <img src={NFT1} alt="NFT-create" className="create_img" />
-              <Link to="/collection">
-                <div className="info-button red-button">Create Your Collection</div>
-              </Link>
+              <div className="info-button red-button2" onClick={() => createCollection()} > Create Your Collection</div>
             </Col>
             <Col xs md="2" className="create-arrow flex-aligned-center">
               Digitized
@@ -68,11 +76,13 @@ function Collection() {
               <p className='priceTxt'>Min Price : $50</p>
             </Col>
           </Row>
+          }
+
 
 
           {/* Upload NFT with Details  */}
-          <Row className="detailDiv">
-            <Col xs md="6" className='leftInfo'>
+          {activeVal === 'val2' && <Row className="detailDiv">
+            <Col xs md="6" className='leftInfo flex-aligned-even'>
               <div>
                 <p className='detailLabel'>Name of Collection:</p>
                 <input className="inputBox"
@@ -89,22 +99,30 @@ function Collection() {
               </div>
               <div>
                 <p className='detailLabel'>Description Caption:</p>
-                <input className="inputBox"
+                <input className="inputBox des_input"
                   placeholder="Describe your project in 3-4 sentences. Be concise and state where money is spent on. "
                   value={description}
                 />
               </div>
               <div>
                 <Link to="/collection">
-                  <div className="info-button white-button  m-r-60">Submit Changes</div>
+                  <div className="info-button white-button  m-r-60" onClick={() => submitChanges()}>Submit Changes</div>
                 </Link>
                 <Link to="/collection">
-                  <div className="info-button white-button">Create NFTs</div>
+                  <div className="info-button white-button" onClick={() => submitChanges()}>Create NFTs</div>
                 </Link>
               </div>
             </Col>
-            <Col xs md="6" className='rightInfo'>
-              <input type="file" className='uploadImg'></input>
+            <Col xs md="2"></Col>
+
+            <Col xs md="4" className='rightInfo'>
+              <input type="file" id="hiddenFileInput"
+                style={{ display: 'none' }} />
+              <label htmlFor="hiddenFileInput" className="uploadImg">
+                UPLOAD
+                IMAGE HERE
+              </label>
+
               <h4 className='detailLabel'>Title of Collection</h4>
               <p className='subtext'>Describe your project  in your prefer way. Etc... Our Charity’s main fundraised money is spent towards childrens’ education.</p>
               <div><FaSquareInstagram className='social-icons' />
@@ -114,13 +132,14 @@ function Collection() {
               <span className='shortTxt'>Add Your Social Media Above</span>
             </Col>
           </Row>
+          }
 
           {/* List NFTs */}
-          <Row>
+          {activeVal === 'val3' && <Row className="listRow">
             {slidesData.map((item, idx) => {
               return (
 
-                <Col xs md="4" className='listNFTDiv'>
+                <Col xs md="4" className='listNFTDiv flex-aligned-center'>
                   <img src={NFT1} alt="nft image" className="imgListNFT" />
 
                   <h3 className='nftTitle'>{item.title}</h3>
@@ -133,8 +152,9 @@ function Collection() {
             }
             )}
           </Row>
+          }
         </Container>
-      </div>
+      </div >
     </>
   )
 }
