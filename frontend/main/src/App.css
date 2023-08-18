@@ -8,6 +8,21 @@ body {
   font-weight: 400;
 }
 
+.flex-aligned-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-aligned-even {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
 .m-r-60 {
   margin-right: 60px;
 }

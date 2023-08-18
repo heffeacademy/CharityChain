@@ -149,7 +149,6 @@ function Company() {
                 <Col xs md="3" className="activityCol normaText color-red">Transaction Hash</Col>
 
               </Row>
-
             )
           })}
           <Row className="subhead color-red load">
@@ -158,7 +157,6 @@ function Company() {
         </Container>
       </div>
     </>
-
   )
 }
 
