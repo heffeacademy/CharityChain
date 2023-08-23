@@ -79,7 +79,7 @@ function MintPage() {
     const handleNftCountChange = (e) => {
         const count = e.target.value;
         setNftCount(count);
-        // Initialize state for each NFT
+        // Initialize state forblblu each NFT
         setNfts(Array(count).fill({ file: null, title: "", description: "" }));
     };
 
