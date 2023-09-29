@@ -1,6 +1,30 @@
 import { useState } from 'react';
 import { ConnectButton } from "@suiet/wallet-kit";
 
+
+
+const mintNFT = async () => {
+    try {
+
+        //TODO: 
+
+        await ipfs_convert(); 
+
+        // TODO: CALL TO SUI JS 
+        const contractAddress = "YOUR_CONTRACT_ADDRESS";
+        const abi = []; // Your contract ABI
+
+        const contract = new web3.eth.Contract(abi, contractAddress);
+        const accounts = await web3.eth.getAccounts();
+
+        nfts.forEach(async (nft, index) => {
+            await contract.methods.mintNFT(nft.file, nft.title, nft.description).send({ from: accounts[0] });
+        });
+    } catch (error) {
+        console.error("Error minting NFT:", error);
+    }
+};
+
 function MintPage() {
     const [nftCount, setNftCount] = useState(0);
     const [nfts, setNfts] = useState([]);
@@ -79,7 +103,7 @@ function MintPage() {
     const handleNftCountChange = (e) => {
         const count = e.target.value;
         setNftCount(count);
-        // Initialize state forblblu each NFT
+        // Initialize state for each NFT
         setNfts(Array(count).fill({ file: null, title: "", description: "" }));
     };
 
@@ -138,7 +162,7 @@ return (
                 ))}
             </div>
 
-            <button style={buttonStyle} type="submit" disabled={!allFieldsFilled()}>Mint</button>
+            <button style={buttonStyle} type="button" onClick={mintNFT} disabled={!allFieldsFilled()}>Mint</button>
         </div>
     </div>
 );
