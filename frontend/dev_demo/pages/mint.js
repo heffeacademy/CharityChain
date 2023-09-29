@@ -11,10 +11,13 @@ const JWT = 'f5b13436b998f3555b55f80146b7033a1410fc05e373f1f179fa645f452b5346'
 import { JsonRpcProvider, devnetConnection } from '@mysten/sui.js';
 const provider = new JsonRpcProvider(denvetConnection);
 
-
+const [nftFilePath, setnftFilePath] = useState("");
+const [nftHash, setnftHash] = useState("");
 
 
 const mintNFT = async () => {
+
+
     const wallet = useWallet()
     useEffect(() => {
         if (!wallet.connected) return;
@@ -26,7 +29,8 @@ const mintNFT = async () => {
 
         //TODO: 
 
-        await ipfs_convert();
+        const ipfsReturn = await sendFileToIPFS(nftFilePath);
+        setnftHash(ipfsReturn["IpfsHash"])
 
         // TODO: CALL TO SUI JS 
 
@@ -63,9 +67,13 @@ const sendFileToIPFS = async (fileImg) => {
                 name: fileName,
             });
             formData.append('pinataMetadata', pinataMetadata);
+            const pinataOptions = JSON.stringify({
+                cidVersion: 0,
+            });
+            formData.append('pinataOptions', pinataOptions);
             const returned = await axios({
                 method: "post",
-                url: "tbd",
+                url: "https://api.pinata.cloud/pinning/sendFileToIPFS",
                 data: formData,
                 headers: {
                     'pinata_api_key': '7eb90c5ff4ff938a3ec6',
@@ -79,12 +87,9 @@ const sendFileToIPFS = async (fileImg) => {
             console.log("Error sending file to IPFS: ");
             console.log(error);
         }
-
-
     }
-
-
 }
+// sendFileToIPFS();
 
 function MintPage() {
     const [nftCount, setNftCount] = useState(0);
@@ -171,6 +176,9 @@ function MintPage() {
     const handleInputChange = (index, field, value) => {
         const updatedNfts = [...nfts];
         updatedNfts[index][field] = value;
+        if (field == 'file') {
+            setnftFilePath(value);
+        }
         setNfts(updatedNfts);
     };
 
