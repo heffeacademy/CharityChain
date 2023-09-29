@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import { ConnectButton } from "@suiet/wallet-kit";
 import { useWallet } from '@suiet/wallet-kit';
-import { TransactionBlock } from '@mysten/sui.js';
 const axios = require('axios')
 const FormData = require('form-data')
 const fs = require('fs')
-const JWT = 'f5b13436b998f3555b55f80146b7033a1410fc05e373f1f179fa645f452b5346'
+const JWT = REACT_APP_PINATA_API_SECRET
 
 //Connection to sui endpoint
-import { JsonRpcProvider, devnetConnection } from '@mysten/sui.js';
-const provider = new JsonRpcProvider(denvetConnection);
+import { getFullnodeUrl, SuiClient } from '@mysten/sui.js/client';
+import { getFaucetHost, requestSuiFromFaucetV0 } from '@mysten/sui.js/faucet';
+const client = new SuiClient({ url: getFullnodeUrl('devnet') });
+
+
 
 const [nftFilePath, setnftFilePath] = useState("");
 const [nftHash, setnftHash] = useState("");
@@ -39,9 +41,12 @@ const mintNFT = async () => {
 
         //get account info 
         console.log('account recieving devnet coins: ', wallet.account?.address)
-        await provider.requestSuiFromFaucet(
-            wallet.account?.address,
-        );
+
+        await requestSuiFromFaucetV0({
+            host: getFaucetHost('testnet'),
+            recipient: wallet.account?.address,
+        });
+
         // const contractAddress = "YOUR_CONTRACT_ADDRESS";
         // const abi = []; // Your contract ABI
 
@@ -76,8 +81,8 @@ const sendFileToIPFS = async (fileImg) => {
                 url: "https://api.pinata.cloud/pinning/sendFileToIPFS",
                 data: formData,
                 headers: {
-                    'pinata_api_key': '7eb90c5ff4ff938a3ec6',
-                    'pinata_secret_api_key': 'f5b13436b998f3555b55f80146b7033a1410fc05e373f1f179fa645f452b5346',
+                    'pinata_api_key': REACT_APP_PINATA_API_KEY,
+                    'pinata_secret_api_key': REACT_APP_PINATA_API_SECRET,
                     'Content-Type': "multipart/form-data"
                 },
             });
