@@ -1,24 +1,77 @@
-import { useState } from 'react';
+
+import { useState, useEffect } from 'react';
 import { ConnectButton } from "@suiet/wallet-kit";
 import { useWallet } from '@suiet/wallet-kit';
-const axios = require('axios')
-const FormData = require('form-data')
-const fs = require('fs')
-const JWT = REACT_APP_PINATA_API_SECRET
 
 //Connection to sui endpoint
 import { getFullnodeUrl, SuiClient } from '@mysten/sui.js/client';
 import { getFaucetHost, requestSuiFromFaucetV0 } from '@mysten/sui.js/faucet';
 const client = new SuiClient({ url: getFullnodeUrl('devnet') });
 
+const mintNFT = async (nftFilePath, wallet) => {
+    console.log('Minting.......');
+    try {
+        console.log('Sending file to be stored on the cloud.....');
+        await sendFileToIPFS(nftFilePath);
+        console.log('Sending file SUCCESS');
+        console.log('account receiving devnet coins: ', wallet.account?.address);
+
+        await requestSuiFromFaucetV0({
+            host: getFaucetHost('testnet'),
+            recipient: wallet.account?.address,
+        });
+    } catch (error) {
+        console.error("Error minting NFT:", error);
+    }
+};
+
+const sendFileToIPFS = async (fileImg) => 
+{
+    console.log('File Image before sending request:', fileImg);
+
+    if (!fileImg || !fileImg.file) {
+        console.error('No file to send.');
+        return;
+    }
+    const formData = new FormData();
+    // Check if fileImg.file is already a Blob or File object
+    // If it's not, you may need to convert it to a Blob or File object
+    if (fileImg.file instanceof Blob || fileImg.file instanceof File) {
+        formData.append('file', fileImg.file);
+    } else {
+        // Assume fileImg.file is a file path, convert it to a readable stream
+        const fileStream = fs.createReadStream(fileImg.file);
+        formData.append('file', fileStream);
+    }
+    console.log('Trying to send Request...');
+        
+    try {
+        const response = await fetch('http://localhost:3000/upload', {
+            method: 'POST',
+            body: formData, // Use formData here
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Data was sent to the backend successfully.');
+            console.log('Response Data:', data);
+        } else {
+            console.log('Failed to send data to the backend', response.status);
+        }
+    } catch (error) {
+        console.error('Error sending data to backend for IPFS:', error);
+    }
+}
 
 
-const [nftFilePath, setnftFilePath] = useState("");
-const [nftHash, setnftHash] = useState("");
-
-
-const mintNFT = async () => {
-
+function MintPage() {
+    const [nftFilePath, setnftFilePath] = useState("");
+    const [nftCount, setNftCount] = useState(0);
+    const [nfts, setNfts] = useState([]);
+    const [values, setValues] = useState({
+        imagePreviewUrl: "",
+        picFile: null
+    });
 
     const wallet = useWallet()
     useEffect(() => {
@@ -27,79 +80,29 @@ const mintNFT = async () => {
         console.log('account address: ', wallet.account?.address)
         console.log('account publicKey: ', wallet.account?.publicKey)
     }, [wallet.connected])
-    try {
 
-        //TODO: 
-
-        const ipfsReturn = await sendFileToIPFS(nftFilePath);
-        setnftHash(ipfsReturn["IpfsHash"])
-
-        // TODO: CALL TO SUI JS 
-
-        /**
-         * TEST: SUI FAUCET */
-
-        //get account info 
-        console.log('account recieving devnet coins: ', wallet.account?.address)
-
-        await requestSuiFromFaucetV0({
-            host: getFaucetHost('testnet'),
-            recipient: wallet.account?.address,
-        });
-
-        // const contractAddress = "YOUR_CONTRACT_ADDRESS";
-        // const abi = []; // Your contract ABI
-
-        // const contract = new web3.eth.Contract(abi, contractAddress);
-        // const accounts = await web3.eth.getAccounts();
-
-        // nfts.forEach(async (nft, index) => {
-        //     await contract.methods.mintNFT(nft.file, nft.title, nft.description).send({ from: accounts[0] });
-        // });
-    } catch (error) {
-        console.error("Error minting NFT:", error);
-    }
-};
-
-const sendFileToIPFS = async (fileImg) => {
-    if (fileImg) {
+    // Function to handle the click of the Mint button
+    const handleMintClick = async () => {
         try {
-            const formData = FormData();
-            const fileName = fs.filename(fileImg)
-            const file = fs.createReadStream(fileImg);
-            formData.append("file", file);
-            const pinataMetadata = JSON.stringify({
-                name: fileName,
-            });
-            formData.append('pinataMetadata', pinataMetadata);
-            const pinataOptions = JSON.stringify({
-                cidVersion: 0,
-            });
-            formData.append('pinataOptions', pinataOptions);
-            const returned = await axios({
-                method: "post",
-                url: "https://api.pinata.cloud/pinning/sendFileToIPFS",
-                data: formData,
-                headers: {
-                    'pinata_api_key': REACT_APP_PINATA_API_KEY,
-                    'pinata_secret_api_key': REACT_APP_PINATA_API_SECRET,
-                    'Content-Type': "multipart/form-data"
-                },
-            });
-            const imgHash = `ipfs://${resFile.data.IpfsHash}`;
-            console.log(imgHash);
+            // Sending a GET request to the server's /test endpoint
+            const response = await fetch('http://localhost:3000/test');
+            
+            // Checking if the response is successful
+            if (response.ok) {
+                // Parsing the response body as text
+                const responseBody = await response.text();
+                
+                // Logging the response body to the console
+                console.log('Successful query!', responseBody);
+            } else {
+                console.error('Error with response', response.status);
+            }
         } catch (error) {
-            console.log("Error sending file to IPFS: ");
-            console.log(error);
+            console.error('Error fetching from /test:', error);
         }
-    }
-}
-// sendFileToIPFS();
+    };
 
-function MintPage() {
-    const [nftCount, setNftCount] = useState(0);
-    const [nfts, setNfts] = useState([]);
-    // Styles for the main container
+        // Styles for the main container
     const containerStyle = {
         display: 'flex',
         flexDirection: 'column',
@@ -187,20 +190,40 @@ function MintPage() {
         setNfts(updatedNfts);
     };
 
+    // ... rest of the code remains the same
+
+    const handleImageChange = (index, field, value, e) => {
+        const updatedNfts = [...nfts];
+        updatedNfts[index][field] = value;
+        let reader = new FileReader();
+        let inFile = e.target.files[0];
+        reader.onload = () => {
+            setValues({
+                ...values,
+                picFile: inFile,
+                imagePreviewUrl: reader.result
+            });
+        }
+        reader.readAsDataURL(inFile);
+        // setnftFilePath(value);
+        setnftFilePath(inFile);
+        setNfts(updatedNfts);
+    };
+
+    // ... rest of the code remains the same
     const allFieldsFilled = () => {
         return nfts.every(nft => nft.file && nft.title && nft.description);
     };
-
     return (
         <div style={containerStyle}>
-            <h1 style={titleStyle}>Mint Your NFT Collection!</h1>
+            <h1 style={titleStyle}>Create Your LoveLock!</h1>
             <div style={connectStyle}>
                 <ConnectButton>Connect!</ConnectButton>
             </div>
 
             <div style={formStyle}>
                 <label>
-                    Number of NFTs to mint:
+                    Number of KindKeys to create:
                     <select value={nftCount} onChange={handleNftCountChange} style={inputStyle}>
                         <option value="0">Select</option>
                         {[...Array(20).keys()].map(i => (
@@ -212,12 +235,18 @@ function MintPage() {
                 <div style={nftBoxesContainerStyle}>
                     {nfts.map((nft, index) => (
                         <div key={index} style={nftBoxStyle}>
-                            <input
-                                type="file"
-                                accept="image/*"
-                                style={inputStyle}
-                                onChange={e => handleInputChange(index, 'file', e.target.files[0])}
-                            />
+                            <div>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    style={inputStyle}
+                                    onChange={e =>
+                                        handleImageChange(index, 'file', e.target.files[0], e)
+                                    }
+                                />
+                                <img src={values.imagePreviewUrl}
+                                    alt="..." style={{ objectFit: 'cover' }} />
+                            </div>
                             <input
                                 type="text"
                                 placeholder={`Title ${index + 1}`}
@@ -235,11 +264,14 @@ function MintPage() {
                         </div>
                     ))}
                 </div>
+                {/* <button style={buttonStyle} type="button" onClick={handleMintClick}> Mint </button> */}
+                <button style={buttonStyle} type="button" onClick={() => mintNFT(nfts[0], wallet)}>Mint</button>
 
-                <button style={buttonStyle} type="button" onClick={mintNFT} disabled={!allFieldsFilled()}>Mint</button>
             </div>
         </div>
     );
 }
 
 export default MintPage;
+ 
+// IMPACKS
