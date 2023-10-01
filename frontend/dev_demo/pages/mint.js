@@ -12,15 +12,19 @@ const mintNFT = async (nftFilePath, wallet) => {
     console.log('Minting.......');
     try {
         console.log('Sending file to be stored on the cloud.....');
-        await sendFileToIPFS(nftFilePath);
+        // await sendFileToIPFS(nftFilePath);
         console.log('Sending file SUCCESS');
         console.log('account receiving devnet coins: ', wallet.account?.address);
 
         await requestSuiFromFaucetV0({
-            host: getFaucetHost('testnet'),
+            mode: 'no-cors', 
+            host: getFaucetHost('devnet'),
             recipient: wallet.account?.address,
         });
+        
+        console.log('FUNDS SENT! LFG');
     } catch (error) {
+        console.log('Bruh kys');
         console.error("Error minting NFT:", error);
     }
 };

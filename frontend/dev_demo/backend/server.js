@@ -37,7 +37,8 @@ app.post('/upload', upload.single('file'), async (req, res) => {
     // Send file to IPFS
     try {
         console.log("Moment of truth........")
-        const returned = await axios.post('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, {
+        const returned = await axios.post('https://api.pinata.cloud/pinning/pinFileToIPFS', formData, 
+        {
             headers: {
                 'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
                 // JWT
