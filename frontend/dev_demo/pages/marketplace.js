@@ -1,5 +1,6 @@
 import Link from "next/link";
-
+import { ConnectButton } from "@suiet/wallet-kit";
+import { useWallet } from "@suiet/wallet-kit";
 function Marketplace() {
   // In a real-world scenario, this data would come from an API call
   const collections = [
@@ -46,9 +47,19 @@ function Marketplace() {
     // ... more collections
   ];
 
+  const connectStyle = {
+    position: "absolute",
+    top: "10px",
+    right: "200px",
+    width: "100px",
+    textAlign: "right",
+  };
   return (
     <div className="bg-gray-100 min-h-screen p-5">
       <h1 className="text-4xl font-bold mb-5">Marketplace</h1>
+      <div style={connectStyle}>
+        <ConnectButton>Connect!</ConnectButton>
+      </div>
       {collections.map((collection) => (
         <div
           key={collection.id}

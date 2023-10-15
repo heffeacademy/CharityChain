@@ -32,7 +32,8 @@ function Community() {
                 Join
               </Link>
               <Link
-                href={`/dao/${np.id}`}
+                // href={`/dao/${np.id}`}
+                href={"daosubpage"}
                 className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
               >
                 DAO
